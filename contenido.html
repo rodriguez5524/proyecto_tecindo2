@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Scan - Huella Verde</title>
+    <link rel="stylesheet" href="contenido.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>Carbon Scan</h1>
+            <p>Descubre el impacto ambiental a tu alrededor</p>
+        </header>
+
+        <main class="app-main">
+            <div class="scanner-area" id="scannerArea">
+                <div class="scanner-animation"></div>
+                <p id="scanMessage">¡Toca para escanear!</p>
+                <div class="scan-overlay"></div>
+            </div>
+
+            <section class="action-buttons">
+                <button class="dynamic-button scan-button" data-action="scan">
+                    <span class="button-icon">🔍</span>
+                    Escanear Producto
+                </button>
+                <button class="dynamic-button scan-button" data-action="location">
+                    <span class="button-icon">📍</span>
+                    Escanear Lugar
+                </button>
+            </section>
+
+            <section class="result-display" id="resultDisplay">
+                <h2>Resultados del Escaneo</h2>
+                <div class="result-card hidden" id="productResult">
+                    <h3>Producto: <span id="productName"></span></h3>
+                    <p>Huella de Carbono: <span id="productCarbonFootprint" class="carbon-value"></span></p>
+                    <div class="carbon-indicator-bar" id="productCarbonBar">
+                        <div class="fill" style="width: 0%;"></div>
+                    </div>
+                    <p class="impact-message" id="productImpactMessage"></p>
+                </div>
+
+                <div class="result-card hidden" id="locationResult">
+                    <h3>Lugar: <span id="locationName"></span></h3>
+                    <p>Huella de Carbono Estimada: <span id="locationCarbonFootprint" class="carbon-value"></span></p>
+                     <div class="carbon-indicator-bar" id="locationCarbonBar">
+                        <div class="fill" style="width: 0%;"></div>
+                    </div>
+                    <p class="impact-message" id="locationImpactMessage"></p>
+                </div>
+
+                <div class="no-result-message" id="noResultMessage">
+                    <p>Aún no has escaneado nada. ¡Anímate!</p>
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+            <p>&copy; 2025 Carbon Scan. Sostenibilidad al alcance de tu mano.</p>
+        </footer>
+    </div>
+
+    <script src="contenido.js"></script>
+</body>
+</html>
