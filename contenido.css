@@ -1,0 +1,317 @@
+:root {
+    --primary-green: #A8D8B9; /* Verde pastel principal */
+    --secondary-green: #D0ECCF; /* Verde pastel más claro */
+    --tertiary-green: #7BBF8F; /* Verde pastel más oscuro */
+    --light-grey: #F0F0F0; /* Blanco muy suave */
+    --dark-text: #333333;
+    --light-text: #555555;
+    --white: #FFFFFF;
+    --carbon-low: #C9F0C9; /* Verde muy claro para baja huella */
+    --carbon-medium: #8DD98D; /* Verde medio para huella media */
+    --carbon-high: #3C8D3C; /* Verde oscuro para huella alta */
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-grey);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: var(--dark-text);
+    overflow-x: hidden; /* Evita el scroll horizontal */
+}
+
+.app-container {
+    background-color: var(--white);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    width: 90%;
+    max-width: 600px;
+    padding: 30px;
+    text-align: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.app-header {
+    margin-bottom: 20px;
+}
+
+.app-header h1 {
+    font-size: 2.8em;
+    color: var(--primary-green);
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.app-header p {
+    font-size: 1.1em;
+    color: var(--light-text);
+    font-weight: 300;
+}
+
+.scanner-area {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background-color: var(--secondary-green);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px dashed var(--tertiary-green);
+    box-sizing: border-box;
+}
+
+.scanner-area:hover {
+    background-color: var(--tertiary-green);
+    border-color: var(--primary-green);
+}
+
+.scanner-area p {
+    color: var(--white);
+    font-size: 1.4em;
+    font-weight: 700;
+    z-index: 2;
+    transition: opacity 0.5s ease;
+}
+
+.scanner-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: scanLine 2s infinite ease-in-out;
+    opacity: 0;
+    z-index: 1;
+}
+
+.scanner-area.scanning .scanner-animation {
+    opacity: 1;
+}
+
+@keyframes scanLine {
+    0% { transform: translateY(-100%); }
+    50% { transform: translateY(100%); }
+    100% { transform: translateY(-100%); }
+}
+
+.scan-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    font-size: 1.8em;
+    font-weight: 700;
+}
+
+.scanner-area.scanning .scan-overlay {
+    opacity: 1;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.dynamic-button {
+    background-color: var(--primary-green);
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    padding: 15px 25px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.dynamic-button:hover {
+    background-color: var(--tertiary-green);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.dynamic-button:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.button-icon {
+    font-size: 1.4em;
+}
+
+.result-display {
+    margin-top: 30px;
+    text-align: left;
+}
+
+.result-display h2 {
+    color: var(--primary-green);
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--secondary-green);
+    padding-bottom: 10px;
+}
+
+.result-card {
+    background-color: var(--secondary-green);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.result-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent);
+    pointer-events: none;
+}
+
+.result-card h3 {
+    color: var(--dark-text);
+    margin-top: 0;
+    font-size: 1.4em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.result-card h3::before {
+    content: '✨'; /* Icono innovador */
+    font-size: 0.8em;
+}
+
+.result-card p {
+    font-size: 1.05em;
+    color: var(--dark-text);
+    line-height: 1.6;
+}
+
+.carbon-value {
+    font-weight: 700;
+    color: var(--tertiary-green);
+    font-size: 1.1em;
+}
+
+.carbon-indicator-bar {
+    width: 100%;
+    height: 15px;
+    background-color: var(--light-grey);
+    border-radius: 8px;
+    margin-top: 10px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.carbon-indicator-bar .fill {
+    height: 100%;
+    border-radius: 8px;
+    transition: width 1s ease-out, background-color 0.5s ease-out;
+}
+
+/* Colores para la barra de huella de carbono */
+.low .fill { background-color: var(--carbon-low); }
+.medium .fill { background-color: var(--carbon-medium); }
+.high .fill { background-color: var(--carbon-high); }
+
+
+.impact-message {
+    font-style: italic;
+    color: var(--light-text);
+    margin-top: 15px;
+    font-size: 0.95em;
+}
+
+.no-result-message {
+    background-color: var(--light-grey);
+    border-radius: 10px;
+    padding: 20px;
+    color: var(--light-text);
+    font-style: italic;
+}
+
+.hidden {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.fade-in {
+    animation: resultCardFadeIn 0.6s ease-out forwards;
+}
+
+@keyframes resultCardFadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); display: block; } /* Asegura que se vea al final */
+}
+
+/* Estilo para simular AR */
+.scanner-area.ar-mode {
+    background: url('https://via.placeholder.com/600x200/A8D8B9/FFFFFF?text=Simulando+Realidad+Aumentada') no-repeat center center / cover;
+    color: transparent; /* Oculta el texto original */
+}
+
+.scanner-area.ar-mode #scanMessage {
+    display: none;
+}
+
+/* Responsividad básica */
+@media (max-width: 480px) {
+    .app-container {
+        padding: 20px;
+    }
+
+    .app-header h1 {
+        font-size: 2.2em;
+    }
+
+    .app-header p {
+        font-size: 1em;
+    }
+
+    .dynamic-button {
+        width: 100%;
+        justify-content: center;
+    }
+}
